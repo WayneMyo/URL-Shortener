@@ -17,6 +17,10 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+def create_db() -> None:
+    Base.metadata.create_all(bind=engine)
+
+
 def create_tables():
     from app.models import Counter, Url  # Import models here to avoid circular import issues
     Base.metadata.create_all(bind=engine)
