@@ -8,7 +8,7 @@ To install the necessary dependencies for the URL Shortener, run:
 pip install -r requirements.txt
 ```
 
-## Configuration
+## Application Configuration
 The URL Shortener uses environment-specific settings to configure the application. By default, the application runs in development mode, but you can switch to production mode by setting the `APP_ENV` environment variable to `production`.
 
 The settings files are located in the `app/settings` directory, and include:
@@ -21,7 +21,9 @@ You can set the `DEV_DATABASE_URL` and `PROD_DATABASE_URL` environment variables
 
 The application also uses a `.env` file to load environment variables. An example `.env` file is provided, but you should create your own for your specific configuration.
 
-## Usage
+
+
+## Application Usage
 To start the URL Shortener web application, run:
 
 ```
@@ -36,8 +38,23 @@ The API endpoints are:
 
 The API requires a valid JSON payload in the request body for the `POST /v1/shorten` endpoint, containing a `url` field with a valid HTTP or HTTPS URL.
 
+## Diagrams-as-Code Configuration
+* Install Graphviz: If you have not installed Graphviz yet, download and install it from the official website (https://graphviz.org/download/). Make sure to add the installation directory to your system's PATH.
+* Add Graphviz to your PATH: If you have already installed Graphviz but it is not added to your system's PATH, you can add it manually. To do this, open a command prompt and type set PATH=%PATH%;C:\path\to\graphviz\bin, replacing C:\path\to\graphviz\bin with the actual path to the Graphviz bin directory.
+
+## Diagrams-as-Code Usage
+To generate the diagrams:
+
+* Go to the `diagrams` directory.
+* Run `python {diagram_name}.py`, replacing `{diagram_name}` with the name of the diagram you want to generate. For example:
+```
+python high_level_architecture.py
+```
+* The diagram will be generated in the `diagrams\generated_diagrams` directory.
+
 ## Files
 * `app`: The main application directory containing the FastAPI application, models, utilities, and other modules.
+* `diagrams`: The directory containing Diagram-as-Code diagrams for the URL Shortener project.
 * `.env`: The environment variable file containing the configuration settings.
 * `config.py`: The configuration file that loads the appropriate settings based on the current environment.
 * `database.py`: The database configuration file that creates the database engine and session factory.
