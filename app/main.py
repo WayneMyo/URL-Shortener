@@ -7,9 +7,9 @@ from sqlalchemy.orm import Session
 
 from database import create_db
 from app.app import app
-from app.models import Url
+from app.models import UrlStatus
 from app.dependencies import get_db
-from app.exceptions import ShortUrlNotFound
+from app.exceptions import ExpiredUrl, ShortUrlNotFound
 from app.logging_config import setup_logging
 from app.utils import get_short_url_for_original_url
 from app.crud import get_original_url_by_short_url
@@ -46,8 +46,12 @@ async def shorten_url(request: Request, url_request: UrlShortenRequest, db: Sess
 async def redirect_to_original(short_url: str, db: Session = Depends(get_db)):
     url = get_original_url_by_short_url(db, short_url)
     if url:
-        logger.info(f"Redirecting short URL {short_url} to {url.original_url}")
-        return RedirectResponse(url.original_url)
+        if url.status == UrlStatus.ACTIVE:
+            logger.info(f"Redirecting short URL {short_url} to {url.original_url}")
+            return RedirectResponse(url.original_url)
+        else:
+            logger.warning(f"Short URL is expired: {short_url}")
+            raise ExpiredUrl()
     else:
         logger.warning(f"Short URL not found: {short_url}")
         raise ShortUrlNotFound()
