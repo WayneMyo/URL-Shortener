@@ -19,7 +19,7 @@ with Diagram("High Level Architecture", show=False, filename=output_dir + "high_
             with Cluster("Application Tier Private Subnet"):
                 web = Lambda("API Backend")
 
-            with Cluster("Database & Storage Private Subnet"):
+            with Cluster("Database & Storage Tier Private Subnet"):
                 dynamodb = Dynamodb("Application Data Store\n(Multi-AZ & Global Tables)")
                 counter_cache = ElastiCache("Counter Cache\n(Multi-AZ)")
 

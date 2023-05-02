@@ -1,0 +1,56 @@
+# Author: Wayne Myo
+# Elastic Load Balancer, DynamoDB & ElastiCache configurations are manually handled.
+# serverless.yml file focuses on deploying the Lambda function, setting up Route53 record set and configuring VPC settings for the Lambda function.
+
+service: url-shortener
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  runtime: python3.10.9
+  stage: dev
+  region: ap-southeast-1
+  environment:
+    APP_ENV: ${opt:stage, 'development'}
+    DEV_DATABASE_URL: ${env:DEV_DATABASE_URL}
+    PROD_DATABASE_URL: ${env:PROD_DATABASE_URL}
+  memorySize: 256
+  timeout: 10
+  vpc:
+    securityGroupIds:
+      - ${env:APP_SECURITY_GROUP_ID}
+    subnetIds:
+      - ${env:APP_SUBNET_ID}
+
+functions:
+  app:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: any
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: any
+          cors: true
+    environment:
+      ELASTICACHE_URL: ${env:ELASTICACHE_URL}
+
+resources:
+  Resources:
+    Route53RecordSet:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneId: ${env:ROUTE53_HOSTED_ZONE_ID}
+        Name: ${env:ROUTE53_DOMAIN_NAME}
+        Type: A
+        AliasTarget:
+          HostedZoneId: ${env:ELB_HOSTED_ZONE_ID}
+          DNSName: ${env:ELB_DNS_NAME}

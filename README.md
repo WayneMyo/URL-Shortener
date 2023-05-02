@@ -1,5 +1,5 @@
 # URL Shortener
-The URL Shortener is a web application that allows users to create shortened URLs for longer, harder-to-remember URLs.  The application uses FastAPI as the web framework for the backend APIs.
+The URL Shortener is a web application that allows users to create shortened URLs for longer, harder-to-remember URLs. The application uses FastAPI as the web framework for the backend APIs and can be deployed using the Serverless Framework and AWS Lambda.
 
 ## Installation
 To install the necessary dependencies for the URL Shortener, run:
@@ -21,14 +21,32 @@ You can set the `DEV_DATABASE_URL` and `PROD_DATABASE_URL` environment variables
 
 The application also uses a `.env` file to load environment variables. An example `.env` file is provided, but you should create your own for your specific configuration.
 
+## Deployment with Serverless Framework
+1. Install the Serverless Framework globally: npm install -g serverless
+2. Configure AWS credentials: Follow these instructions to set up your AWS credentials for the Serverless Framework.
+3. Install the required Serverless plugins:
 
+```
+npm init -y
+npm install serverless-wsgi serverless-python-requirements
+```
+
+4. In the `serverless.yml` file, update the `service` name and other configurations as needed.
+5. Make sure you have the AWS CLI installed and configured with the proper AWS credentials. If not, you can follow the [official guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html "ASWS CLI Installation Guide") for installation and configuration.
+6. Deploy your application using the Serverless Framework:
+
+```
+serverless deploy
+```
+7. After the deployment is complete, you will receive an API Gateway endpoint URL. Use this URL to access your FastAPI application.
 
 ## Application Usage
-To start the URL Shortener web application, run:
+To start the URL Shortener web application locally, run:
 
 ```
 uvicorn app.main:app --reload
 ```
+
 This will start the application in development mode and automatically reload the server when changes are made.
 
 The API endpoints are:
