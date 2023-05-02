@@ -30,6 +30,11 @@ def get_short_url_for_original_url(db: Session, original_url: str) -> str:
     return short_url
 
 def generate_short_url(url: str, counter_value: int, length: int = 6) -> str:
+    """
+    The default length value is 6. Since the Base64 encoding uses 64 unique characters, 
+    there are 64^6 possible combinations of short URLs, which results in 68,719,476,736 unique short URLs.
+    """
+
     # Hash the original URL with SHA256
     sha256 = hashlib.sha256(url.encode('utf-8')).digest()
 
