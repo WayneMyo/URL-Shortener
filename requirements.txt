@@ -5,3 +5,6 @@ sqlalchemy==2.0.12 # ORM for database
 python-dotenv==1.0.0 # .env file support
 diagrams==0.23.3 # Diagram as code
 mangum==0.17.0 # ASGI adapter for AWS Lambda & API Gateway
+pytest==7.3.1 # Testing framework
+pytest-asyncio==0.21.0 # Asyncio support for pytest
+httpx==0.24.0 # Async HTTP client
