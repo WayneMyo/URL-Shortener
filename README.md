@@ -64,12 +64,12 @@ python high_level_architecture.py
 * `.gitignore`: The list of files and directories to ignore in Git.
 
 ## Feature Roadmap
-* Custom short URLs: Allow users to provide a custom short URL alias when they create a new shortened URL. This could make it easier for users to remember the short URL or to create branded short URLs.
-* Expiration: Add an expiration date to the short URLs, after which the short URL will no longer be valid. Example use case: temporary URLs or promotional content that should only be available for a limited time. Also to reduce database size.
-* Analytics: Track the number of clicks, unique visitors, and other metrics for each short URL. This could provide valuable insights for users to gauge the effectiveness of their links and understand their audience better.
-* SSO (Single Sign-On): Allow users to sign in to the application using their Google, Facebook, or other social media accounts.
 * Rate limiting: Add rate limiting to API endpoints to protect from abuse and to ensure fair usage among users.
-* API Documentation: Create thorough API documentation using tools like Swagger.
+* Expiration: Add an expiration date to the short URLs, after which the short URL will no longer be valid. Example use case: temporary URLs or promotional content that should only be available for a limited time. Also to reduce database size.
+* SSO (Single Sign-On): Allow users to sign in to the application using their Google, Facebook, or other social media accounts.
+* Custom short URLs: Allow users to provide a custom short URL alias when they create a new shortened URL. This could make it easier for users to remember the short URL or to create branded short URLs.
+* Analytics: Track the number of clicks, unique visitors, and other metrics for each short URL. This could provide valuable insights for users to gauge the effectiveness of their links and understand their audience better.
 * Custom domain support: Allow users to use their own custom domains for the short URLs.
-* Bulk URL shortening: Add an endpoint that allows users to shorten multiple URLs in a single request. 
+* API Documentation: Create API documentation using tools like Swagger.
 * QR code generation: Generate QR codes for the short URLs, making it easier for users to share the URLs, especially on printed materials or in situations where typing is not convenient.
+* Bulk URL shortening: Add an endpoint that allows users to shorten multiple URLs in a single request.
