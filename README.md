@@ -63,7 +63,7 @@ python high_level_architecture.py
 * `README.md`: The README file for the URL Shortener project.
 * `.gitignore`: The list of files and directories to ignore in Git.
 
-## Future Feature Roadmap
+## Feature Roadmap
 * Custom short URLs: Allow users to provide a custom short URL alias when they create a new shortened URL. This could make it easier for users to remember the short URL or to create branded short URLs.
 * Expiration: Add an expiration date to the short URLs, after which the short URL will no longer be valid. Example use case: temporary URLs or promotional content that should only be available for a limited time. Also to reduce database size.
 * Analytics: Track the number of clicks, unique visitors, and other metrics for each short URL. This could provide valuable insights for users to gauge the effectiveness of their links and understand their audience better.
